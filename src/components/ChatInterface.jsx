@@ -18,20 +18,23 @@ function XChatInterface() {
 
     try {
       // Make API call to backend
-      const response = await fetch("http://127.0.0.1:5000/api/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: input, language: sourceLang }), // Send language to backend
-      });
+      const response = await fetch(
+        "https://vartalaap-ai-backend.vercel.app//api/chat",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: input, language: sourceLang }), // Send language to backend
+        }
+      );
 
       const data = await response.json();
 
       if (response.ok) {
         if (data.escalate) {
           // Handle escalation
-          await fetch("http://127.0.0.1:5000/api/escalate", {
+          await fetch("https://vartalaap-ai-backend.vercel.app//api/escalate", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -152,7 +155,9 @@ function XChatInterface() {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex ${
+              message.role === "user" ? "justify-end" : "justify-start"
+            }`}
           >
             <div
               className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-5 py-4 shadow-lg ${
