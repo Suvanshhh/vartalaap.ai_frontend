@@ -19,7 +19,7 @@ function XChatInterface() {
     try {
       // Make API call to backend
       const response = await fetch(
-        "https://vartalaap-ai-backend.vercel.app//api/chat",
+        "https://vartalaap-ai-backend.vercel.app/api/chat",
         {
           method: "POST",
           headers: {
@@ -34,7 +34,7 @@ function XChatInterface() {
       if (response.ok) {
         if (data.escalate) {
           // Handle escalation
-          await fetch("https://vartalaap-ai-backend.vercel.app//api/escalate", {
+          await fetch("https://vartalaap-ai-backend.vercel.app/api/escalate", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
